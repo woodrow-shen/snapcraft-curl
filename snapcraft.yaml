@@ -1,0 +1,38 @@
+name: demo-curl
+version: 7.47.0-1ubuntu2.1
+summary: command line tool for transferring data with URL syntax
+description: |
+ curl is a command line tool for transferring data with URL syntax, supporting
+ DICT, FILE, FTP, FTPS, GOPHER, HTTP, HTTPS, IMAP, IMAPS, LDAP, LDAPS, POP3,
+ POP3S, RTMP, RTSP, SCP, SFTP, SMTP, SMTPS, TELNET and TFTP.
+ .
+ curl supports SSL certificates, HTTP POST, HTTP PUT, FTP uploading, HTTP form
+ based upload, proxies, cookies, user+password authentication (Basic, Digest,
+ NTLM, Negotiate, kerberos...), file transfer resume, proxy tunneling and a
+ busload of other useful tricks.
+confinement: strict
+grade: stable
+
+apps:
+    curl:
+        command: usr/bin/curl
+        aliases:
+            - curl
+        plugs: 
+            - network-bind
+            - home
+
+parts:
+    curl:
+        # Get more information about plugins by running
+        # snapcraft help plugins
+        # and more information about the available plugins
+        # by running
+        # snapcraft list-plugins
+        plugin: nil
+        stage-packages:
+            - libcurl3-gnutls
+            - zlib1g
+            - curl
+        prime:
+            - -usr/include
